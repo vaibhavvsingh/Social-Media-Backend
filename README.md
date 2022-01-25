@@ -1,3 +1,4 @@
+
 # Social Media Backend API (in Development)
 This is a social media backend server currently in development.
 ---
@@ -11,6 +12,7 @@ This is a social media backend server currently in development.
 - Supports Comments, Likes and Shares
 
 <br><br>
+
 ## Run this project in your system
 `npm install`
 
