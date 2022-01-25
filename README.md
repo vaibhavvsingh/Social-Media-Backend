@@ -11,5 +11,10 @@ This is a social media backend server currently in development.
 - Supports Comments, Likes and Shares
 
 <br><br>
+## Run this project in your system
+`npm install`
 
+`npm run serve` for nodemon
+
+`npm start` for node
 
