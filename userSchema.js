@@ -23,17 +23,9 @@ const userSchema = new mongoose.Schema({
     type: String,
     default: "",
   },
-  followers: {
+  posts: {
     type: Array,
     default: [],
-  },
-  following: {
-    type: Array,
-    default: [],
-  },
-  isAdmin: {
-    type: Boolean,
-    default: false,
   },
 });
 
