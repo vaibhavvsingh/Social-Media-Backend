@@ -76,4 +76,16 @@ userRouter.put("/:username/post/remove", async (req, res) => {
   }
 });
 
+userRouter.get("/posts", async (req, res) => {
+  try {
+    let user = await User.findOne({ username: req.body.username });
+    if (user.password === req.body.password) {
+      let allposts = await User.find({}).select("posts -_id");
+      res.status(200).json(allposts);
+    }
+  } catch (err) {
+    console.log(err);
+  }
+});
+
 module.exports = userRouter;
