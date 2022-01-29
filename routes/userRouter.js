@@ -76,11 +76,28 @@ userRouter.put("/:username/post/remove", async (req, res) => {
   }
 });
 
-userRouter.get("/posts", async (req, res) => {
+userRouter.use(function (req, res, next) {
+  //Enabling CORS
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept, x-client-key, x-client-token, x-client-secret, Authorization"
+  );
+  next();
+});
+userRouter.post("/posts", async (req, res) => {
   try {
     let user = await User.findOne({ username: req.body.username });
     if (user.password === req.body.password) {
-      let allposts = await User.find({}).select("posts -_id");
+      let postsRes = await User.find({}).select("posts -_id");
+      let allposts = [];
+      postsRes.forEach((element) => {
+        element.posts.forEach((post) => {
+          allposts.push(post);
+        });
+      });
+
       res.status(200).json(allposts);
     }
   } catch (err) {
